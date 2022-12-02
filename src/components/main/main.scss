@@ -1,0 +1,13 @@
+
+.main {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 16px;
+  max-width: max(42%, 386px);
+
+  &__detail {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+}

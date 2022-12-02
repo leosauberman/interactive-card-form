@@ -1,0 +1,14 @@
+
+.card {
+  width: 447px;
+  height: 245px;
+  box-shadow: 5px 6px 5px 0 hsl(278deg 4% 23% / 53%);
+  border-radius: 12px;
+}
+
+@media (max-width: 345px) {
+  .card {
+    width: 287px;
+    height: 157px;
+  }
+}

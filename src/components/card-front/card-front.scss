@@ -1,0 +1,43 @@
+@use "src/colors" as colors;
+
+.card.front {
+  padding: 30px;
+  background-image: url("../../assets/bg-card-front.png");
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: end;
+
+  .logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 84px;
+    height: 47px;
+  }
+
+  .row {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 40%;
+    width: 100%;
+    color: colors.$white;
+    letter-spacing: 2px;
+
+    &__number {
+      font-size: 24px;
+    }
+
+    &__info {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      width: 100%;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+  }
+}
+

@@ -1,0 +1,25 @@
+@use "src/colors" as colors;
+
+.card.back {
+  padding: 30px;
+  background-image: url("../../assets/bg-card-back.png");
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  .row {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    color: colors.$white;
+    letter-spacing: 2px;
+  }
+}
+
+

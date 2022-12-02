@@ -1,0 +1,14 @@
+@use "src/colors" as colors;
+
+button {
+  height: 54px;
+  width: 100%;
+  background-color: colors.$very-dark-violet;
+  border-radius: 8px;
+  border: none;
+  color: colors.$white;
+  padding: 16px;
+  font: 500 18px "Space Grotesk";
+  box-shadow: 2px 5px 5px 0 hsl(278deg 4% 23% / 66%);
+  cursor: pointer;
+}
