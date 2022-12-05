@@ -1,0 +1,17 @@
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "cards forms";
+  grid-template-columns: 1.5fr 1fr;
+  row-gap: 20px;
+
+  .cards {
+    grid-area: cards;
+  }
+
+  .forms {
+    grid-area: forms;
+  }
+}
