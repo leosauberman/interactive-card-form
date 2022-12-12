@@ -7,7 +7,7 @@
   position: relative;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: end;
+  justify-content: flex-end;
 
   .logo {
     position: absolute;
@@ -38,6 +38,12 @@
       font-weight: 400;
       text-transform: uppercase;
     }
+  }
+}
+
+@media (max-width: 640px) {
+  .card.front .row__number {
+    font-size: 20px;
   }
 }
 

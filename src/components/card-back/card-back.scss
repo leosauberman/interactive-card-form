@@ -13,12 +13,22 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
     width: 100%;
     padding-right: 20px;
     padding-bottom: 5px;
     color: colors.$white;
     letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 640px) {
+  .card.back {
+    background-size: contain;
+
+    .row {
+      padding-bottom: 14px;
+    }
   }
 }
 

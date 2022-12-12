@@ -24,7 +24,28 @@
     }
 
     &__second {
-      justify-content: end;
+      justify-content: flex-end;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .cards-container {
+    padding: 14px;
+    flex-flow: column-reverse nowrap;
+    position: relative;
+    height: 375px;
+    margin-bottom: 10%;
+
+    .flex__first {
+      position: relative;
+      top: -4%;
+      z-index: 20;
+    }
+
+    .flex__second {
+      position: relative;
+      top: 26%;
     }
   }
 }

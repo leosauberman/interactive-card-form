@@ -15,3 +15,12 @@
     grid-area: forms;
   }
 }
+
+@media (max-width: 640px) {
+  .container {
+    grid-template-areas: "cards" "forms";
+    grid-template-columns: auto;
+    grid-template-rows: 0.5fr 1.5fr;
+    row-gap: 0;
+  }
+}
