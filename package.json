@@ -10,6 +10,8 @@
     "@types/node": "^16.18.4",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
+    "cleave.js": "^1.6.0",
+    "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -40,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^6.5.1",
+    "@types/cleave.js": "^1.4.7"
   }
 }

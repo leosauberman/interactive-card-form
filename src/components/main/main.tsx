@@ -1,73 +1,72 @@
 import {InputField, Size} from "../input-field/input-field";
 import "./main.scss";
 import {Button} from "../button/button";
+import {ChangeEvent} from "cleave.js/react/props";
+import React, {FormEvent} from "react";
+import {FormikProps} from "formik";
+import {FormValues} from "../../App";
 
-export const Main = ({
-    cardholder, setCardholder,
-    cardNumber, setCardNumber,
-    expirationDate, setExpirationDate,
-    cvc, setCvc,
-}: any) => {
-
-    const onlyNumbersValidator = (value?: string): boolean => {
-        if(value) return !/^[0-9]*$/.test(value);
-        return false;
-    }
-
-    const expDateValidator = (value?: string) => {
-        if(value) {
-            const [month, year] = value.split("/");
-            let monthInt = parseInt(month);
-            let yearInt = parseInt(year);
-            return (monthInt <= 0 && monthInt > 12) && yearInt <= 22;
-        }
-        return false;
+export const Main = ({form}: { form: FormikProps<FormValues>, className?: string }) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        form.handleChange(event);
     }
 
     return (
-      <div className="main">
-          <InputField
-              errorText={"Can't be blank"}
-              isInvalid={cardholder?.length == 0}
-              label={"Cardholder Name"}
-              placeholder={"e.g. Jane Appleseed"}
-              setValue={(v) => setCardholder(v)}
-              inputSize={Size.Large}
-              value={cardholder}
-              type="text"
-          />
-          <InputField
-              errorText={"Wrong format, numbers only"}
-              isInvalid={onlyNumbersValidator(cardNumber)}
-              label={"Card Number"}
-              placeholder={"e.g. 1234 5678 9123 0000"}
-              setValue={(v) => setCardNumber(v)}
-              inputSize={Size.Large}
-              value={cardNumber}
-              maxLength={19}
-          />
-          <div className="main__detail">
-              <InputField
-                  errorText={"Can't be blank"}
-                  isInvalid={expDateValidator(expirationDate)}
-                  label={"Exp. Date (MM/YY)"}
-                  placeholder={"MM/YY"}
-                  setValue={(v) => setExpirationDate(v)}
-                  inputSize={Size.Small}
-                  value={expirationDate}
-              />
-              <InputField
-                  errorText={"Can't be blank"}
-                  isInvalid={cvc?.length == 0}
-                  label={"CVC"}
-                  placeholder={"e.g. 123"}
-                  setValue={(v) => setCvc(v)}
-                  inputSize={Size.Small}
-                  value={cvc}
-                  type="number"
-              />
-          </div>
-          <Button type="button">Confirm</Button>
-      </div>
+        <form className="main" onSubmit={form.handleSubmit}>
+            <InputField
+                errorText={form.touched.cardholder ? form.errors.cardholder : ""}
+                label={"Cardholder Name"}
+                placeholder={"e.g. Jane Appleseed"}
+                inputSize={Size.Large}
+                name="cardholder"
+                type="text"
+                value={form.values.cardholder}
+                maxLength={28}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+                onBlur={form.handleBlur}
+            />
+            <InputField
+                errorText={form.touched.cardNumber ? form.errors.cardNumber : ""}
+                label={"Card Number"}
+                placeholder={"e.g. 1234 5678 9123 0000"}
+                inputSize={Size.Large}
+                name="cardNumber"
+                maxLength={19}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+                onBlur={form.handleBlur}
+                maskOptions={{
+                    creditCard: true,
+                }}
+            />
+            <div className="main__detail">
+                <InputField
+                    errorText={form.touched.expirationDate ? form.errors.expirationDate : ""}
+                    label={"Exp. Date (MM/YY)"}
+                    placeholder={"MM/YY"}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+                    onBlur={form.handleBlur}
+                    inputSize={Size.Small}
+                    name="expirationDate"
+                    maskOptions={{
+                        date: true,
+                        datePattern: ['m', 'y']
+                    }}
+                />
+                <InputField
+                    errorText={form.touched.cvc ? form.errors.cvc : ""}
+                    label={"CVC"}
+                    placeholder={"e.g. 123"}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+                    onBlur={form.handleBlur}
+                    inputSize={Size.Small}
+                    name="cvc"
+                    maskOptions={{
+                        blocks: [3],
+                        numericOnly: true
+                    }}
+                />
+            </div>
+            <Button type="submit" disabled={form.isSubmitting}>Confirm</Button>
+        </form>
     );
 }

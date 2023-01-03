@@ -1,0 +1,29 @@
+@use "src/colors" as colors;
+
+.completed {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+
+  .column {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: colors.$very-dark-violet;
+    line-height: 24px;
+    margin: 0;
+  }
+
+  &__desc {
+    color: colors.$dark-violet;
+  }
+}

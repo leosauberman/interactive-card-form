@@ -1,5 +1,7 @@
-import {ChangeEvent, InputHTMLAttributes} from "react";
+import {InputHTMLAttributes} from "react";
+import Cleave from "cleave.js/react";
 import "./input-field.scss";
+import {CleaveOptions} from "cleave.js/options";
 
 export enum Size {
     Small = "small",
@@ -7,31 +9,47 @@ export enum Size {
 }
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-    errorText: string,
-    isInvalid: boolean,
+    errorText?: string,
     label: string,
     placeholder: string,
-    setValue: (value: string) => void,
     inputSize: Size,
+    maskOptions?: CleaveOptions
 }
 
 
-export const InputField = ({errorText, isInvalid, label, placeholder, setValue, inputSize, value, ...props}: InputFieldProps) => {
+export const InputField = ({
+   errorText,
+   label,
+   placeholder,
+   inputSize,
+   value,
+   maskOptions,
+   ...props
+}: InputFieldProps) => {
+    const isInvalid = errorText && errorText.length > 0;
     const errorClass = isInvalid ? "error" : "";
-    const handleChange = ({target}: ChangeEvent<HTMLInputElement>) => {
-        setValue(target.value);
-    }
 
     return (
         <div className={`field ${inputSize} ${errorClass}`}>
             <label className="field__label">{label}</label>
-            <input
-                className={`field__input ${errorClass}`}
-                placeholder={placeholder}
-                value={value ?? ""}
-                onChange={handleChange}
-                {...props}
-            />
+            {
+                maskOptions ?
+                    (<Cleave
+                        options={maskOptions}
+                        className={`field__input ${errorClass}`}
+                        placeholder={placeholder}
+                        value={value ?? ""}
+                        onChange={props.onChange}
+                        {...props}
+                    />)
+                    : (<input
+                        className={`field__input ${errorClass}`}
+                        placeholder={placeholder}
+                        value={value ?? ""}
+                        onChange={props.onChange}
+                        {...props}
+                    />)
+            }
             <span className="field__error" style={{visibility: isInvalid ? "visible" : "hidden"}}>{errorText}</span>
         </div>
     )
